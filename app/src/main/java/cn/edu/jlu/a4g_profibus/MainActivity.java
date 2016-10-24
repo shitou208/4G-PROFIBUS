@@ -5,10 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationBar
                 .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC
                 );
-        bottomNavigationBar.addItem(new BottomNavigationItem(R.mipmap.ic_launcher, "首页").setActiveColorResource(R.color.color1))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_launcher, "快速查询").setActiveColorResource(R.color.color2))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_launcher, "个人中心").setActiveColorResource(R.color.color3))
+        bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.home, "首页").setActiveColorResource(R.color.colorPrimary))
+                .addItem(new BottomNavigationItem(R.drawable.search, "快速查询").setActiveColorResource(R.color.colorPrimary))
+                .addItem(new BottomNavigationItem(R.drawable.center, "个人中心").setActiveColorResource(R.color.colorPrimary))
                 .setFirstSelectedPosition(0)
                 .initialise();
         //viewpager的初始化设置
