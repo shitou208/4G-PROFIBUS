@@ -1,20 +1,79 @@
 package cn.edu.jlu.a4g_profibus;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.rengwuxian.materialedittext.MaterialEditText;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
+    class HomeClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            // TODO Auto-generated method stub
+            switch (v.getId()){
+                case R.id.button_seeMachine:
+                    Intent intent_type1=new Intent(MainActivity.this,cn.edu.jlu.a4g_profibus.SeeMachineActivity.class);
+                    intent_type1.putExtra("type",1);
+                    startActivity(intent_type1);
+                    //Toast.makeText(MainActivity.this,"点击了查看设备",Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.button_addMachine:
+                    Intent intent_type2=new Intent(MainActivity.this,cn.edu.jlu.a4g_profibus.SeeMachineActivity.class);
+                    intent_type2.putExtra("type",2);
+                    startActivity(intent_type2);
+                    // Toast.makeText(MainActivity.this,"点击了添加设备",Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.button_deleteMachine:
+                    Intent intent_type3=new Intent(MainActivity.this,cn.edu.jlu.a4g_profibus.SeeMachineActivity.class);
+                    intent_type3.putExtra("type",3);
+                    startActivity(intent_type3);
+                    //Toast.makeText(MainActivity.this,"点击了删除设备",Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.button_controlMachine:
+                    Intent intent_type4=new Intent(MainActivity.this,cn.edu.jlu.a4g_profibus.SeeMachineActivity.class);
+                    intent_type4.putExtra("type",4);
+                    startActivity(intent_type4);
+                    //Toast.makeText(MainActivity.this,"点击了控制设备",Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.button_confirm_search:
+                    if(TextUtils.isEmpty(edittextSearchName.getText().toString())){
+                        Toast.makeText(MainActivity.this,"请填写设备名称！",Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Intent intent_type5=new Intent(MainActivity.this,cn.edu.jlu.a4g_profibus.SeeMachineActivity.class);
+                        intent_type5.putExtra("type",5);
+                        intent_type5.putExtra("name",edittextSearchName.getText().toString());
+                        startActivity(intent_type5);
+                    }
+                    break;
+            }
+        }
+    }
     private ViewPager viewPager;
     private View view_home, view_search, view_center;
     private List<View> viewList;
-
+    private Button buttonSeeMachine;
+    private Button buttonControlMachine;
+    private Button buttonAddMachine;
+    private Button buttonDeleteMachine;
+    private MaterialEditText edittextSearchName;
+    private Button buttonConfirmSearch;
+    private TextView textviewLoginInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,5 +136,29 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        //初始化各个页面的控件
+        InitPagerWidget();
+    }
+    public void InitPagerWidget(){
+        buttonSeeMachine = (Button) view_home.findViewById(R.id.button_seeMachine);
+        buttonControlMachine = (Button) view_home.findViewById(R.id.button_controlMachine);
+        buttonAddMachine = (Button) view_home.findViewById(R.id.button_addMachine);
+        buttonDeleteMachine = (Button) view_home.findViewById(R.id.button_deleteMachine);
+        edittextSearchName = (MaterialEditText) view_search.findViewById(R.id.edittext_searchName);
+        buttonConfirmSearch = (Button) view_search.findViewById(R.id.button_confirm_search);
+        textviewLoginInfo = (TextView) view_center.findViewById(R.id.textview_loginInfo);
+        buttonSeeMachine.setOnClickListener(new HomeClickListener());
+        buttonControlMachine.setOnClickListener(new HomeClickListener());
+        buttonAddMachine.setOnClickListener(new HomeClickListener());
+        buttonDeleteMachine.setOnClickListener(new HomeClickListener());
+        buttonConfirmSearch.setOnClickListener(new HomeClickListener());
+
+        //检查登录状态，设置个人中心信息
+        SharedPreferences login=getSharedPreferences("login",MODE_PRIVATE);
+        String username=login.getString("username","未登录");
+        textviewLoginInfo.setText("当前登录用户："+username);
     }
 }
+
+
+

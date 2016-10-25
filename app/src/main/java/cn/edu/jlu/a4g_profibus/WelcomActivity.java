@@ -2,6 +2,7 @@ package cn.edu.jlu.a4g_profibus;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -44,9 +45,17 @@ public class WelcomActivity extends Activity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-                    //跳转
-                    Intent intent = new Intent(WelcomActivity.this, cn.edu.jlu.a4g_profibus.MainActivity.class);
-                    startActivity(intent);
+                    //检查登录信息，决定跳转方向
+                    SharedPreferences login=getSharedPreferences("login",MODE_PRIVATE);
+                    String username=login.getString("username","none");
+                    if(username.equals("none")){
+                        Intent intent = new Intent(WelcomActivity.this, cn.edu.jlu.a4g_profibus.LoginActivity.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Intent intent = new Intent(WelcomActivity.this, cn.edu.jlu.a4g_profibus.MainActivity.class);
+                        startActivity(intent);
+                    }
                     WelcomActivity.this.finish();
             }
         }

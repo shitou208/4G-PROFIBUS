@@ -1,10 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="主页"
+    android:text="管理控制台"
+    android:layout_centerHorizontal="true"
+    android:textSize="20sp"
+    android:textColor="#ff5722"
+    android:layout_marginTop="50dp"
     />
-</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        >
+        <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+            android:layout_marginBottom="6dp">
+
+            <Button
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:text="查看设备"
+                android:background="@color/colorPrimary"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:layout_marginRight="6dp"
+                android:id="@+id/button_seeMachine"
+                />
+
+            <Button
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:text="控制设备"
+            android:background="@color/colorPrimary"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+                android:id="@+id/button_controlMachine"
+            />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:text="添加设备"
+                android:background="@color/colorPrimary"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:layout_marginRight="6dp"
+                android:id="@+id/button_addMachine"
+                />
+            <Button
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:text="删除设备"
+                android:background="@color/colorPrimary"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:id="@+id/button_deleteMachine"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
