@@ -33,16 +33,16 @@ public class SeeMachineActivity extends AppCompatActivity {
         int type=intent.getIntExtra("type",0);
         switch (type){
             case 1:
-                webview.loadUrl("http://tumblr69.herokuapp.com/tp/html_tp/tp_no1.html");
+                webview.loadUrl("1");
                 break;
             case 2:
-                webview.loadUrl("http://tumblr69.herokuapp.com/tp/html_tp/tp_no2.html");
+                webview.loadUrl("2");
                 break;
             case 3:
-                webview.loadUrl("http://tumblr69.herokuapp.com/tp/html_tp/tp_no3.html");
+                webview.loadUrl("3");
                 break;
             case 4:
-                webview.loadUrl("http://tumblr69.herokuapp.com/tp/html_tp/tp_no4.html");
+                webview.loadUrl("4");
                 break;
             case 5:
                 String para=intent.getStringExtra("name");
